@@ -17,7 +17,28 @@ PLAYER_WHITE_GUID   = "5eb5cf"
 RUNES_BAG_GUID = "64cb24"
 FALLS_BAG_GUID = "e4ed66"
 
-COUNTER_GUID = "441043"
+COUNTER_GUID                = "441043"
+RED_PLAYER_CURRENT_WEIGHT   = "53014e"
+RED_PLAYER_MAX_WEIGHT       = "32472d"
+RED_PLAYER_TORCHES          = "80771a"
+RED_PLAYER_HEALTH           = "859cf1"
+BLUE_PLAYER_CURRENT_WEIGHT  = "84de25"
+BLUE_PLAYER_MAX_WEIGHT      = "25420d"
+BLUE_PLAYER_TORCHES         = "77e349"
+BLUE_PLAYER_HEALTH          = "24bd63"
+GREEN_PLAYER_CURRENT_WEIGHT = "981e7a"
+GREEN_PLAYER_MAX_WEIGHT     = "89715d"
+GREEN_PLAYER_TORCHES        = "d6054f"
+GREEN_PLAYER_HEALTH         = "3970e8"
+WHITE_PLAYER_CURRENT_WEIGHT = "126707"
+WHITE_PLAYER_MAX_WEIGHT     = "34e5ac"
+WHITE_PLAYER_TORCHES        = "a4f8e2"
+WHITE_PLAYER_HEALTH         = "8aae90"
+
+CURRENT_WEIGHT_DEFAULT  = 0
+MAX_WEIGHT_DEFAULT      = 20
+TORCHES_DEFAULT         = 1
+HEALTH_DEFAULT          = 3
 
 TORCHES_DECK_GUID   = "223fe4"
 ITEMS_DECK_GUID     = "027618"
@@ -63,6 +84,23 @@ function onload()
 
     counter     = getObjectFromGUID(COUNTER_GUID)
     exit_fig    = getObjectFromGUID(EXIT_GUID)
+
+    red_player_current_weight   = getObjectFromGUID(RED_PLAYER_CURRENT_WEIGHT)
+    red_player_max_weight       = getObjectFromGUID(RED_PLAYER_MAX_WEIGHT)
+    red_player_torches          = getObjectFromGUID(RED_PLAYER_TORCHES)
+    red_player_health           = getObjectFromGUID(RED_PLAYER_HEALTH)
+    blue_player_current_weight  = getObjectFromGUID(BLUE_PLAYER_CURRENT_WEIGHT)
+    blue_player_max_weight      = getObjectFromGUID(BLUE_PLAYER_MAX_WEIGHT)
+    blue_player_torches         = getObjectFromGUID(BLUE_PLAYER_TORCHES)
+    blue_player_health          = getObjectFromGUID(BLUE_PLAYER_HEALTH)
+    green_player_current_weight = getObjectFromGUID(GREEN_PLAYER_CURRENT_WEIGHT)
+    green_player_max_weight     = getObjectFromGUID(GREEN_PLAYER_MAX_WEIGHT)
+    green_player_torches        = getObjectFromGUID(GREEN_PLAYER_TORCHES)
+    green_player_health         = getObjectFromGUID(GREEN_PLAYER_HEALTH)
+    white_player_current_weight = getObjectFromGUID(WHITE_PLAYER_CURRENT_WEIGHT)
+    white_player_max_weight     = getObjectFromGUID(WHITE_PLAYER_MAX_WEIGHT)
+    white_player_torches        = getObjectFromGUID(WHITE_PLAYER_TORCHES)
+    white_player_health         = getObjectFromGUID(WHITE_PLAYER_HEALTH)
 
     blue_player_default_pos     = blue_player.getPosition()
     red_player_default_pos      = red_player.getPosition()
@@ -256,6 +294,22 @@ function onload()
     })
 
     counter.setValue(TURNS_TO_OPEN_EXIT)
+    red_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    red_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    red_player_torches.setValue(TORCHES_DEFAULT)
+    red_player_health.setValue(HEALTH_DEFAULT)
+    blue_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    blue_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    blue_player_torches.setValue(TORCHES_DEFAULT)
+    blue_player_health.setValue(HEALTH_DEFAULT)
+    green_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    green_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    green_player_torches.setValue(TORCHES_DEFAULT)
+    green_player_health.setValue(HEALTH_DEFAULT)
+    white_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    white_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    white_player_torches.setValue(TORCHES_DEFAULT)
+    white_player_health.setValue(HEALTH_DEFAULT)
 end
 
 function generate_table()
@@ -341,6 +395,22 @@ function reset_game()
     white_player.setPositionSmooth(white_player_default_pos, false, false)
     exit_fig.setPositionSmooth(exit_default_pos, false, false)
     counter.setValue(TURNS_TO_OPEN_EXIT)
+    red_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    red_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    red_player_torches.setValue(TORCHES_DEFAULT)
+    red_player_health.setValue(HEALTH_DEFAULT)
+    blue_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    blue_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    blue_player_torches.setValue(TORCHES_DEFAULT)
+    blue_player_health.setValue(HEALTH_DEFAULT)
+    green_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    green_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    green_player_torches.setValue(TORCHES_DEFAULT)
+    green_player_health.setValue(HEALTH_DEFAULT)
+    white_player_current_weight.setValue(CURRENT_WEIGHT_DEFAULT)
+    white_player_max_weight.setValue(MAX_WEIGHT_DEFAULT)
+    white_player_torches.setValue(TORCHES_DEFAULT)
+    white_player_health.setValue(HEALTH_DEFAULT)
 end
 
 function shuffle_all()
