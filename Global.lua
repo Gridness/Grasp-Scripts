@@ -1,13 +1,13 @@
 -- Grasp: The Greed Game
 -- Game design and scripts by Ivan "Gridness" Steklov
-DEBUG = true
-MAP_GENERATED = false
-RESET_BUTTON_PRESSED = false
-FIRST_FALL = false
+DEBUG                   = true
+MAP_GENERATED           = false
+RESET_BUTTON_PRESSED    = false
+FIRST_FALL              = false
 
-MAP_GUID = "b93380"
+MAP_GUID    = "b93380"
 
-EXIT_GUID = "1a3ad7"
+EXIT_GUID   = "1a3ad7"
 
 PLAYER_BLUE_GUID    = "6e72a5"
 PLAYER_RED_GUID     = "99a0cf"
@@ -19,13 +19,15 @@ FALLS_BAG_GUID = "e4ed66"
 
 COUNTER_GUID = "441043"
 
-TORCHES_DECK_GUID = "223fe4"
+TORCHES_DECK_GUID   = "223fe4"
+ITEMS_DECK_GUID     = "027618"
+RUNES_DECK_GUID     = "b95d0a"
 
-GENERATE_TABLE_BUTTON_GUID = "6a9376"
-RESET_GAME_BUTTON_GUID = "5698bb"
-PASS_TURN_ONE_BUTTON_GUID = "61a72c"
-TAKE_TORCH_BUTTON_GUID = "3d4c76"
-TAKE_4_TORCHES_BUTTON_GUID = "717301"
+GENERATE_TABLE_BUTTON_GUID  = "6a9376"
+RESET_GAME_BUTTON_GUID      = "5698bb"
+PASS_TURN_ONE_BUTTON_GUID   = "61a72c"
+TAKE_TORCH_BUTTON_GUID      = "3d4c76"
+TAKE_4_TORCHES_BUTTON_GUID  = "717301"
 
 BUTTON_1_GUID = "906155"
 BUTTON_2_GUID = "123d22"
@@ -44,41 +46,44 @@ FALLS = {}
 FALLS_AS_OBJECTS = {}
 
 function onload()
-    map = getObjectFromGUID(MAP_GUID)
-    map_points = map.getSnapPoints()
-    torches = getObjectFromGUID(TORCHES_DECK_GUID)
+    map         = getObjectFromGUID(MAP_GUID)
+    map_points  = map.getSnapPoints()
+
+    torches     = getObjectFromGUID(TORCHES_DECK_GUID)
+    items       = getObjectFromGUID(ITEMS_DECK_GUID)
+    runes       = getObjectFromGUID(RUNES_DECK_GUID)
 
     runes_bag = getObjectFromGUID(RUNES_BAG_GUID)
     falls_bag = getObjectFromGUID(FALLS_BAG_GUID)
 
-    blue_player = getObjectFromGUID(PLAYER_BLUE_GUID)
-    red_player = getObjectFromGUID(PLAYER_RED_GUID)
-    green_player = getObjectFromGUID(PLAYER_GREEN_GUID)
-    white_player = getObjectFromGUID(PLAYER_WHITE_GUID)
+    blue_player     = getObjectFromGUID(PLAYER_BLUE_GUID)
+    red_player      = getObjectFromGUID(PLAYER_RED_GUID)
+    green_player    = getObjectFromGUID(PLAYER_GREEN_GUID)
+    white_player    = getObjectFromGUID(PLAYER_WHITE_GUID)
 
-    counter = getObjectFromGUID(COUNTER_GUID)
-    exit_fig = getObjectFromGUID(EXIT_GUID)
+    counter     = getObjectFromGUID(COUNTER_GUID)
+    exit_fig    = getObjectFromGUID(EXIT_GUID)
 
-    blue_player_default_pos = blue_player.getPosition()
-    red_player_default_pos = red_player.getPosition()
-    green_player_default_pos = green_player.getPosition()
-    white_player_default_pos = white_player.getPosition()
-    exit_default_pos = exit_fig.getPosition()
+    blue_player_default_pos     = blue_player.getPosition()
+    red_player_default_pos      = red_player.getPosition()
+    green_player_default_pos    = green_player.getPosition()
+    white_player_default_pos    = white_player.getPosition()
+    exit_default_pos            = exit_fig.getPosition()
 
-    generate_table_button = getObjectFromGUID(GENERATE_TABLE_BUTTON_GUID)
-    reset_game_button = getObjectFromGUID(RESET_GAME_BUTTON_GUID)
-    pass_turn_one_button = getObjectFromGUID(PASS_TURN_ONE_BUTTON_GUID)
-    take_torch_button = getObjectFromGUID(TAKE_TORCH_BUTTON_GUID)
-    take_4_torches_button = getObjectFromGUID(TAKE_4_TORCHES_BUTTON_GUID)
-    button_1 = getObjectFromGUID(BUTTON_1_GUID)
-    button_2 = getObjectFromGUID(BUTTON_2_GUID)
-    button_3 = getObjectFromGUID(BUTTON_3_GUID)
-    button_4 = getObjectFromGUID(BUTTON_4_GUID)
-    button_5 = getObjectFromGUID(BUTTON_5_GUID)
-    button_6 = getObjectFromGUID(BUTTON_6_GUID)
-    button_7 = getObjectFromGUID(BUTTON_7_GUID)
-    button_8 = getObjectFromGUID(BUTTON_8_GUID)
-    button_9 = getObjectFromGUID(BUTTON_9_GUID)
+    generate_table_button   = getObjectFromGUID(GENERATE_TABLE_BUTTON_GUID)
+    reset_game_button       = getObjectFromGUID(RESET_GAME_BUTTON_GUID)
+    pass_turn_one_button    = getObjectFromGUID(PASS_TURN_ONE_BUTTON_GUID)
+    take_torch_button       = getObjectFromGUID(TAKE_TORCH_BUTTON_GUID)
+    take_4_torches_button   = getObjectFromGUID(TAKE_4_TORCHES_BUTTON_GUID)
+    button_1                = getObjectFromGUID(BUTTON_1_GUID)
+    button_2                = getObjectFromGUID(BUTTON_2_GUID)
+    button_3                = getObjectFromGUID(BUTTON_3_GUID)
+    button_4                = getObjectFromGUID(BUTTON_4_GUID)
+    button_5                = getObjectFromGUID(BUTTON_5_GUID)
+    button_6                = getObjectFromGUID(BUTTON_6_GUID)
+    button_7                = getObjectFromGUID(BUTTON_7_GUID)
+    button_8                = getObjectFromGUID(BUTTON_8_GUID)
+    button_9                = getObjectFromGUID(BUTTON_9_GUID)
     
     generate_table_button.createButton({
         click_function = 'generate_table',
@@ -301,7 +306,7 @@ function generate_table()
     create_falls(16)
     FIRST_FALL = true
 
-    --shuffle_all()
+    shuffle_all()
 
     MAP_GENERATED = true
     for i = 1, 3 do
@@ -340,6 +345,9 @@ end
 
 function shuffle_all()
     broadcastToAll('Определяем судьбу...')
+
+    items.shuffle()
+    runes.shuffle()
 end
 
 function pass_turn(objectButtonClicked, playerColorClicked)
