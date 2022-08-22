@@ -1,2 +1,2 @@
-# Grasp Scripts
+# [OUTDATED | NO LONGER SUPPORTED] Grasp Scripts
 Scripts used in Grasp board game in Tabletop Simulator
